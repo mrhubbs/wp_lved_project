@@ -1,0 +1,5 @@
+<component>
+    <view >
+        <lv_label text="HI!"></lv_label>
+    </view>
+</component>
