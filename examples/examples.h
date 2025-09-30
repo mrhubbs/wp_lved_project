@@ -1,11 +1,19 @@
 /**
- * @file ui.c
+ * @file examples.h
  */
+
+#ifndef EXAMPLES_H
+#define EXAMPLES_H
+
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 /*********************
  *      INCLUDES
  *********************/
-#include "ui.h"
+
+#include "examples_gen.h"
 
 /*********************
  *      DEFINES
@@ -16,27 +24,24 @@
  **********************/
 
 /**********************
- *  STATIC PROTOTYPES
+ * GLOBAL VARIABLES
  **********************/
 
 /**********************
- *  STATIC VARIABLES
+ * GLOBAL PROTOTYPES
  **********************/
+
+/**
+ * Initialize the component library
+ */
+void examples_init(const char * asset_path);
 
 /**********************
  *      MACROS
  **********************/
 
-/**********************
- *   GLOBAL FUNCTIONS
- **********************/
+#ifdef __cplusplus
+} /*extern "C"*/
+#endif
 
-void ui_init(const char * asset_path)
-{
-    LV_LOG_USER("ui_init()\n");
-    wp_lved_project_init(asset_path);
-}
-
-/**********************
- *   STATIC FUNCTIONS
- **********************/
+#endif /*EXAMPLES_H*/

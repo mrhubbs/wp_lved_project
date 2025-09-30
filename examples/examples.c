@@ -1,20 +1,12 @@
 /**
- * @file ui.h
+ * @file examples.c
  */
-
-#ifndef UI_H
-#define UI_H
-
-#ifdef __cplusplus
-extern "C" {
-#endif
 
 /*********************
  *      INCLUDES
  *********************/
 
-/* Include all the UI libraries */
-#include "wp_lved_project.h"
+#include "examples.h"
 
 /*********************
  *      DEFINES
@@ -25,24 +17,28 @@ extern "C" {
  **********************/
 
 /**********************
- * GLOBAL VARIABLES
+ *  STATIC PROTOTYPES
  **********************/
 
 /**********************
- * GLOBAL PROTOTYPES
+ *  STATIC VARIABLES
  **********************/
-
-/**
- * Initialize all the custom component libraries (not calling `lv_init()`)
- */
-void ui_init(const char * asset_path);
 
 /**********************
  *      MACROS
  **********************/
 
-#ifdef __cplusplus
-} /*extern "C"*/
-#endif
+/**********************
+ *   GLOBAL FUNCTIONS
+ **********************/
 
-#endif /*UI_H*/
+void examples_init(const char * asset_path)
+{
+    examples_init_gen(asset_path);
+
+    /* Add your own custom code here if needed */
+}
+
+/**********************
+ *   STATIC FUNCTIONS
+ **********************/

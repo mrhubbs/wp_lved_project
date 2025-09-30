@@ -1,9 +1,9 @@
 /**
- * @file wp_lved_project_gen.h
+ * @file examples_gen.h
  */
 
-#ifndef WP_LVED_PROJECT_GEN_H
-#define WP_LVED_PROJECT_GEN_H
+#ifndef EXAMPLES_GEN_H
+#define EXAMPLES_GEN_H
 
 #ifndef UI_SUBJECT_STRING_LENGTH
 #define UI_SUBJECT_STRING_LENGTH 256
@@ -27,13 +27,9 @@ extern "C" {
  *      DEFINES
  *********************/
 
-
-
 /**********************
  *      TYPEDEFS
  **********************/
-
-
 
 /**********************
  * GLOBAL VARIABLES
@@ -47,11 +43,9 @@ extern "C" {
  * Global styles
  *----------------*/
 
-
 /*----------------
  * Fonts
  *----------------*/
-
 
 /*----------------
  * Images
@@ -73,7 +67,7 @@ extern "C" {
  * Initialize the component library
  */
 
-void wp_lved_project_init_gen(const char * asset_path);
+void examples_init_gen(const char * asset_path);
 
 /**********************
  *      MACROS
@@ -84,10 +78,10 @@ void wp_lved_project_init_gen(const char * asset_path);
  **********************/
 
 /*Include all the widget and components of this library*/
-#include "components/h1_gen.h"
+#include "components/checkbox_gen.h"
 
 #ifdef __cplusplus
 } /*extern "C"*/
 #endif
 
-#endif /*WP_LVED_PROJECT_GEN_H*/
+#endif /*EXAMPLES_GEN_H*/

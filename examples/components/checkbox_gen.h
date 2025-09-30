@@ -1,9 +1,9 @@
 /**
- * @file h1_gen.h
+ * @file checkbox_gen.h
  */
 
-#ifndef H1_H
-#define H1_H
+#ifndef CHECKBOX_H
+#define CHECKBOX_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -12,6 +12,7 @@ extern "C" {
 /*********************
  *      INCLUDES
  *********************/
+
 #ifdef LV_LVGL_H_INCLUDE_SIMPLE
     #include "lvgl.h"
 #else
@@ -30,8 +31,7 @@ extern "C" {
  * GLOBAL PROTOTYPES
  **********************/
 
-
-lv_obj_t * h1_create(lv_obj_t * parent);
+lv_obj_t * checkbox_create(lv_obj_t * parent);
 
 /**********************
  *      MACROS
@@ -41,4 +41,4 @@ lv_obj_t * h1_create(lv_obj_t * parent);
 } /*extern "C"*/
 #endif
 
-#endif /*H1_H*/
+#endif /*CHECKBOX_H*/
