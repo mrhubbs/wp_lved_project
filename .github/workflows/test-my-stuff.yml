@@ -24,5 +24,4 @@ jobs:
         uses: ./.github/workflows/sub.yml
         with:
             branch: ${{github.event.inputs.branch || 'main'}}
-            # Need to explicitly convert to boolean... because the input is actually a string?
-            bool: ${{(github.event.inputs.bool || 'true') == 'true'}}
+            bool: ${{ !contains(github.event.inputs.bool, 'false') }}
