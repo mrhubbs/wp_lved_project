@@ -14,14 +14,43 @@ on:
                 default: false
 
     schedule:
-        - cron: '*/10 * * * *' # Runs every 10 minutes
+        - cron: '*/5 * * * *' # Runs every 10 minutes
 
 jobs:
+    determine_env:
+        runs-on: ubuntu-latest
+        outputs:
+            BRANCH: ${{ steps.env.outputs.BRANCH }}
+            BOOL: ${{ steps.env.outputs.BOOL }}
+        steps:
+            -
+                id: env
+                run: |
+                    echo "BRANCH=${{ (github.event_name == 'schedule' && 'main') || github.event.inputs.branch }}" >> $GITHUB_OUTPUT
+                    echo "BOOL=${{ ((github.event_name == 'schedule' && 'true') || github.event.inputs.bool) == 'true' }}" >> $GITHUB_OUTPUT
+
     # The default supplied using || 'staging' and || 'true' for branch and nightly
     # are in place for the scheduled run, when all inputs are null.
 
     test:
+        needs: determine_env
         uses: ./.github/workflows/sub.yml
         with:
-            branch: ${{github.event.inputs.branch || 'main'}}
-            bool: ${{ !contains(github.event.inputs.bool, 'false') }}
+            branch: ${{ (github.event_name == 'schedule' && 'main') || github.event.inputs.branch }}
+            bool: ${{ ((github.event_name == 'schedule' && 'true') || github.event.inputs.bool) == 'true' }}
+
+    show-env-sub-job:
+        needs: determine_env
+        uses: ./.github/workflows/sub.yml
+        with:
+            branch: ${{ needs.determine_env.outputs.BRANCH }}
+            bool: ${{ needs.determine_env.outputs.BOOL }}
+
+    show-env:
+        needs: determine_env
+        runs-on: ubuntu-latest
+        steps:
+              - name: Show inputs
+                run: |
+                    echo "branch input: ${{ needs.determine_env.outputs.BRANCH }}"
+                    echo "bool input: ${{ needs.determine_env.outputs.BOOL }}"
