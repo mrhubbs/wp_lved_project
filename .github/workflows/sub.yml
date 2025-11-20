@@ -1,0 +1,23 @@
+name: Called
+
+on:
+    workflow_call:
+        inputs:
+            string:
+                description: Input string
+                required: true
+                type: string
+                default: 'master'
+            bool:
+                description: Boolean input
+                type: boolean
+                default: false
+
+jobs:
+    called-job:
+        runs-on: ubuntu-latest
+        steps:
+              - name: Output inputs
+                run: |
+                    echo "String input: ${{ github.event.inputs.string }}"
+                    echo "Boolean input: ${{ github.event.inputs.bool }}"

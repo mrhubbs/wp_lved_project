@@ -1,0 +1,28 @@
+name: Test My Stuff
+
+on:
+    workflow_dispatch:
+        inputs:
+            string:
+                description: Input string
+                required: true
+                type: string
+                default: 'master'
+            bool:
+                description: Boolean input
+                type: boolean
+                default: false
+
+    schedule:
+        - cron: '*/2 * * * *' # Runs every 2 minutes
+
+jobs:
+    # The default supplied using || 'staging' and || 'true' for branch and nightly
+    # are in place for the scheduled run, when all inputs are null.
+
+    test:
+        uses: ./.github/workflows/sub.yml
+        with:
+            string: ${{github.event.inputs.string || 'staging'}}
+            # Need to explicitly convert to boolean... because the input is actually a string?
+            bool: ${{(github.event.inputs.bool || 'true') == 'true'}}
