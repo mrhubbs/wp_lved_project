@@ -1,0 +1,16 @@
+on:
+  schedule:
+    # runs daily at 00:00 UTC — change the cron to suit you
+    - cron: '*/30 * * * *'
+  workflow_dispatch:
+
+jobs:
+  smoke-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Print event
+        run: |
+          echo "Event name: ${{ github.event_name }}"
+          date -u
