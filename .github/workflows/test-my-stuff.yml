@@ -14,7 +14,7 @@ on:
                 default: false
 
     schedule:
-        - cron: '*/2 * * * *' # Runs every 2 minutes
+        - cron: '*/10 * * * *' # Runs every 10 minutes
 
 jobs:
     # The default supplied using || 'staging' and || 'true' for branch and nightly
