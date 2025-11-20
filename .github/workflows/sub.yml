@@ -3,7 +3,7 @@ name: Called
 on:
     workflow_call:
         inputs:
-            string:
+            branch:
                 description: Input string
                 required: true
                 type: string
@@ -19,5 +19,23 @@ jobs:
         steps:
               - name: Output inputs
                 run: |
-                    echo "String input: ${{ github.event.inputs.string }}"
+                    echo "branch input: ${{ github.event.inputs.branch }}"
                     echo "Boolean input: ${{ github.event.inputs.bool }}"
+
+              # Checkout repository
+              - name: Checkout repository
+                uses: actions/checkout@v5
+                with:
+                  ref: ${{ github.event.inputs.branch }}
+                  fetch-depth: 500
+                  fetch-tags: true
+                  submodules: false
+
+              # Set up Node.js
+              - uses: actions/setup-node@v3
+                with:
+                      node-version: 22.13.1
+
+              - name: Run Test
+                run: |
+                    node test.js ${{ github.event.inputs.bool }}
