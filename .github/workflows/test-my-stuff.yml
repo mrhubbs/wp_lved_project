@@ -14,7 +14,7 @@ on:
                 default: false
 
     schedule:
-        - cron: '*/5 * * * *' # Runs every 10 minutes
+        - cron: '*/10 * * * *' # Runs every 10 minutes
 
 jobs:
     determine_env:
