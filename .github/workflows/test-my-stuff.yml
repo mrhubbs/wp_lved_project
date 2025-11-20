@@ -27,7 +27,7 @@ jobs:
                 id: env
                 run: |
                     echo "BRANCH=${{ (github.event_name == 'schedule' && 'main') || github.event.inputs.branch }}" >> $GITHUB_OUTPUT
-                    echo "BOOL=${{ ((github.event_name == 'schedule' && 'true') || github.event.inputs.bool) == 'true' }}" >> $GITHUB_OUTPUT
+                    echo "BOOL=${{ (github.event_name == 'schedule' && 'true') || github.event.inputs.bool }}" >> $GITHUB_OUTPUT
 
     # The default supplied using || 'staging' and || 'true' for branch and nightly
     # are in place for the scheduled run, when all inputs are null.
@@ -44,7 +44,8 @@ jobs:
         uses: ./.github/workflows/sub.yml
         with:
             branch: ${{ needs.determine_env.outputs.BRANCH }}
-            bool: ${{ needs.determine_env.outputs.BOOL }}
+            # explicitly convert to boolean
+            bool: ${{ needs.determine_env.outputs.BOOL == 'true' }}
 
     show-env:
         needs: determine_env
