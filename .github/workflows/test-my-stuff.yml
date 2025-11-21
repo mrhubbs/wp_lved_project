@@ -49,6 +49,7 @@ jobs:
 
     show-env:
         needs: determine_env
+        if: ${{ needs.determine_env.outputs.BOOL == 'true' }}
         runs-on: ubuntu-latest
         steps:
               - name: Show inputs
