@@ -19,8 +19,8 @@ jobs:
         steps:
               - name: Output inputs
                 run: |
-                    echo "branch input: ${{ github.event.inputs.branch }}"
-                    echo "Boolean input: ${{ github.event.inputs.bool }}"
+                    echo "branch input: ${{ inputs.branch }}"
+                    echo "Boolean input: ${{ inputs.bool }}"
 
               # Checkout repository
               - name: Checkout repository
@@ -38,4 +38,4 @@ jobs:
 
               - name: Run Test
                 run: |
-                    node test.js ${{ github.event.inputs.bool }}
+                    node test.js ${{ inputs.bool }}
